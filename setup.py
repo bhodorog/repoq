@@ -18,9 +18,11 @@ setup(name='repopy',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          # -*- Extra requirements: -*-
+          "boto",
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
+      entry_points={
+          "console_scripts": [
+              "repoq = repopy.repopy:main",
+          ],
+      },
       )
