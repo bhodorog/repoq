@@ -1,8 +1,14 @@
 import argparse
+import functools
 import itertools
 import re
+import sys
+
 
 from pkg_resources import parse_version, Requirement
+
+
+import backends
 
 
 def _starts_with_digit(s):
@@ -90,21 +96,36 @@ class RepoHandler(object):
         return [_pid(*i) for i in self._iter_pkgs() if patt.search(_pid(*i))]
 
 
-def get_handler(backend=backend.S3Backend):
+def get_handler(backend):
     return RepoHandler(backend)
 
 
 def _parse_cli():
     parser = argparse.ArgumentParser()
-    parser.add_argument("cmd", choices=["latest", "match", "exists", "list"])
-    parser.add_argument("-n", "--name")
-    parser.add_argument("-g", "--regexp")
+    parser.add_argument("cmd", choices=["latest", "exists", "list", "match"])
+    parser.add_argument("arg", help="package name (latest, exists, list) or regexp (match)")
+    parser.add_argument("-b", "--bucket", help="Used for s3 backend")
     return parser.parse_args()
 
 
+def _pretty_print(o):
+    if isinstance(o, list):
+        for el in o:
+            print el
+    else:
+        print o
+    if not o:
+        sys.exit(1)
+
+
 def _handle_cli(args):
-    get_handler
-    dispatcher = {"latest":}
+    h = get_handler(backends.S3Backend(args.bucket))
+    dispatcher = {
+        "latest": functools.partial(h.get_latest),
+        "match": functools.partial(h.match),
+        "exists": functools.partial(h.has_package),
+        "list": functools.partial(h.get_by_name),}
+    _pretty_print(dispatcher.get(args.cmd)(args.arg))
 
 
 def main():
