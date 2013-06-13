@@ -1,14 +1,19 @@
 from setuptools import setup, find_packages
-import sys, os
 
 version = '0.0.1'
 
 setup(name='repopy',
       version=version,
-      description="Collection of utilities to handle a repository of python packages",
+      description="Collection of utilities to query a repository of python packages",
       long_description="""\
 """,
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      classifiers=[
+          "Development Status :: 3 - Alpha",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "Intended Audience :: System Administrators",
+          "Topic :: System :: Software Distribution",
+      ], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='python repository pypi',
       author='bhodorog',
       author_email='bogdan.hodorog@3pillarglobal.com',
