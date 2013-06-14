@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 version = '0.0.1'
 
-setup(name='repopy',
+setup(name='repoq',
       version=version,
       description="Collection of utilities to query a repository of python packages",
       long_description="""\
@@ -27,7 +27,7 @@ setup(name='repopy',
       ],
       entry_points={
           "console_scripts": [
-              "repoq = repopy.repopy:main",
+              "repoq = repoq.handlers:main",
           ],
       },
       )

@@ -1,6 +1,6 @@
 import unittest
 from .backends import MemoryBackend
-from .repopy import get_handler, parse
+from .repoq import get_handler, parse
 
 
 class TestS3Repository(unittest.TestCase):
