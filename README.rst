@@ -2,7 +2,7 @@
 repoq
 =====
 .. image:: https://travis-ci.org/bhodorog/repoq.png
-           :target: http//travis-ci.org/bhdorog/repoq
+           :target: http://travis-ci.org/bhdorog/repoq
            :alt: Build status of repoq
 
 Goal
